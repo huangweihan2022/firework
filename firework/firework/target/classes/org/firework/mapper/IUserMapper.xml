@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.firework.mapper.IUserMapper">
+    <select id="getAllUser" resultType="org.firework.entity.User">
+        select * from user
+    </select>
+
+    <insert id="addUser" parameterType="org.firework.entity.User">
+        <selectKey resultType="int" keyProperty="id" keyColumn="id">
+            select last_insert_id();
+        </selectKey>
+        insert into user (name,age,address) values(#{name}, #{age}, #{address})
+    </insert>
+
+    <delete id="delUser">
+        delete from user where id = #{id}
+    </delete>
+</mapper>
