@@ -4,11 +4,11 @@ import org.firework.common.entity.OrderCarrier;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @see UserChangeListener
+ * @see QuoteChangeListener
  */
-public class UserChangeEvent extends ApplicationEvent {
+public class QuoteChangeEvent extends ApplicationEvent {
 
-    public UserChangeEvent(Object source) {
+    public QuoteChangeEvent(Object source) {
         super(source);
     }
 
