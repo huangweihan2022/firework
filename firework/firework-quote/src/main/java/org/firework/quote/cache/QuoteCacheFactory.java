@@ -1,14 +1,15 @@
 package org.firework.quote.cache;
 
-import org.firework.common.constant.SettleType;
+import org.firework.common.cache.CacheManager;
 import org.firework.common.entity.Settle;
-import org.firework.quote.mapper.IQuoteMapper;
+import org.firework.crud.mapper.ISettleManageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 报价缓存
@@ -20,14 +21,15 @@ public class QuoteCacheFactory {
     private static final CacheManager<Long, Settle> QUOTE_CACHE_MAP = new CacheManager<>(new HashMap<>());
 
     @Autowired
-    private IQuoteMapper quoteMapper;
+    private ISettleManageMapper settleManageMapper;
 
     /**
      * application start up will init order type is quote all cache
      */
     @PostConstruct
     public void init(){
-        List<Settle> quoteSettleConfigs = quoteMapper.getSettleOfType(SettleType.QUOTE);
+        List<Settle> quoteSettleConfigs = settleManageMapper.query();
+        quoteSettleConfigs.removeIf(Objects::isNull);
         quoteSettleConfigs.forEach(p -> QUOTE_CACHE_MAP.put(p.getId(), p));
     }
 

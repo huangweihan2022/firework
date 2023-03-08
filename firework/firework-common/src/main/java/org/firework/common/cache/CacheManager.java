@@ -1,9 +1,8 @@
-package org.firework.quote.cache;
+package org.firework.common.cache;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 模拟缓存

@@ -1,4 +1,4 @@
-package org.firework.quote.event;
+package org.firework.crud.event;
 
 import org.firework.common.entity.OrderCarrier;
 import org.springframework.context.ApplicationEvent;

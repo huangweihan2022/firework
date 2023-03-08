@@ -1,6 +1,5 @@
 package org.firework.quote.strategy;
 
-import org.apache.dubbo.common.extension.Activate;
 import org.firework.common.entity.QuoteFilter;
 import org.firework.common.entity.Settle;
 import org.springframework.core.Ordered;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 /**
  * this is quote config filter for receive site
  */
-@Activate
 public class ReceiveSiteFilterStrategy implements IQuoteFilterStrategy, Ordered {
 
     @Override

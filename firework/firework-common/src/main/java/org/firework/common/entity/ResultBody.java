@@ -34,7 +34,15 @@ public class ResultBody<T> implements Serializable {
         return new ResultBody(false, message, null);
     }
 
+    public static ResultBody<?> fail() {
+        return new ResultBody(false, null, null);
+    }
+
     public static ResultBody<?> ok(Object result) {
         return new ResultBody(true, null, result);
+    }
+
+    public static ResultBody<?> ok() {
+        return new ResultBody(true, null, null);
     }
 }

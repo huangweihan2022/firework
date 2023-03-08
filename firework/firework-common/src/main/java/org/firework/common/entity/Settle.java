@@ -33,7 +33,7 @@ public class Settle implements Serializable {
     private BigDecimal endWeight;
 
     /* 首重重量 */
-    private BigDecimal fistWeight;
+    private BigDecimal firstWeight;
 
     /* 首重价格 */
     private BigDecimal firstPrice;

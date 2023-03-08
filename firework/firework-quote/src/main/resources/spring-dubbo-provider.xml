@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 定义应用名 -->
+    <dubbo:application name="dubbo-firework-quote"/>
+
+    <!-- 定义注册中心地址 -->
+    <dubbo:registry address="zookeeper://101.43.3.46:2181"/>
+
+    <!-- 费用报价测试-->
+    <dubbo:service interface="org.firework.api.ISettleManageRpcService" ref="settleManageRpcService">
+        <dubbo:parameter key="topic" value="QUOTE"/>
+    </dubbo:service>
+
+    <bean id="settleManageRpcService" class="org.firework.quote.service.impl.SettleManageRpcService"/>
+
+</beans>

@@ -1,4 +1,4 @@
-package org.firework.quote.mapper;
+package org.firework.crud.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.firework.common.entity.Settle;
@@ -6,21 +6,21 @@ import org.firework.common.entity.Settle;
 import java.util.List;
 
 @Mapper
-public interface IQuoteMapper {
+public interface ISettleManageMapper {
 
     /**
      * 获取报价配置
      */
-    List<Settle> getSettleOfType(String settleType);
+    List<Settle> query();
 
     /**
      * 新增报价配置
      */
-    Integer addOneSettle(Settle settle);
+    Integer add(Settle settle);
 
     /**
      * 删除报价配置
      */
-    void deleteSettle(Integer uid);
+    void delete(Long id);
 
 }

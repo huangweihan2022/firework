@@ -14,6 +14,7 @@
         <module>firework-center</module>
         <module>firework-quote</module>
         <module>firework-discount</module>
+        <module>firework-crud</module>
     </modules>
 
     <properties>
