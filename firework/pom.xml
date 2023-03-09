@@ -13,8 +13,8 @@
         <module>firework-common</module>
         <module>firework-center</module>
         <module>firework-quote</module>
-        <module>firework-discount</module>
         <module>firework-crud</module>
+        <module>firework-discount</module>
     </modules>
 
     <properties>

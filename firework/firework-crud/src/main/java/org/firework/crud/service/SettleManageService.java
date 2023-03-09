@@ -30,7 +30,7 @@ public class SettleManageService {
      * 查询
      */
     public List<Settle> query() {
-        return this.settleManageMapper.query();
+        return this.settleManageMapper.query(null);
     }
 
 

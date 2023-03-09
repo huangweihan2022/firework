@@ -4,18 +4,18 @@
 
     <select id="query" resultType="org.firework.common.entity.Settle">
         select * from settle
+        <where>
+            settle_type = #{settleType}
+        </where>
     </select>
 
     <insert id="add" parameterType="org.firework.common.entity.Settle">
-        insert into settle (send_site_id, send_site_name, receive_site_id, receive_site_name, start_weight,
-                            end_weight, first_weight, first_price, continue_price_unit, first_discount,
-                            continue_discount, settle_type)
-        values (#{sendSiteId}, #{sendSiteName}, #{receiveSiteId}, #{receiveSiteName}, #{startWeight},
-                #{endWeight}, #{firstWeight}, #{firstPrice}, #{continuePriceUnit}, #{firstDiscount},
-                #{continueDiscount}, #{settleType})
+        insert into settle (send_site_id, send_site_name, receive_site_id, receive_site_name, start_weight,end_weight,
+                            first_weight, first_price, continue_price_unit, first_discount,continue_discount, settle_type)
+        values (#{sendSiteId}, #{sendSiteName}, #{receiveSiteId}, #{receiveSiteName}, #{startWeight},#{endWeight}, #{firstWeight}, #{firstPrice}, #{continuePriceUnit}, #{firstDiscount},#{continueDiscount}, #{settleType})
     </insert>
 
     <delete id="delete">
-        update settle set deleted = 1 where id = #{id}
+        delete from settle where id = #{id}
     </delete>
 </mapper>

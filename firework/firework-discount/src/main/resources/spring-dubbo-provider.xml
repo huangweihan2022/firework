@@ -9,18 +9,21 @@
     <!-- 定义注册中心地址 -->
     <dubbo:registry address="zookeeper://101.43.3.46:2181"/>
 
+    <!-- 协议 -->
+    <dubbo:protocol port="20888"/>
+
     <!-- 费用管理-->
     <dubbo:service interface="org.firework.api.ISettleManageRpcService" ref="settleManageRpcService" retries="0" timeout="60000">
-        <dubbo:parameter key="topic" value="QUOTE"/>
+        <dubbo:parameter key="topic" value="DISCOUNT"/>
     </dubbo:service>
 
-    <bean id="settleManageRpcService" class="org.firework.quote.service.SettleManageRpcService"/>
+    <bean id="settleManageRpcService" class="org.firework.discount.service.SettleManageRpcService"/>
 
     <!-- 费用计算-->
-    <dubbo:service interface="org.firework.api.ICalSettleRpcService" ref="quoteCalSettleRpcService" retries="0" timeout="60000">
-        <dubbo:parameter key="topic" value="QUOTE"/>
+    <dubbo:service interface="org.firework.api.ICalSettleRpcService" ref="discountCalSettleRpcService" retries="0" timeout="60000">
+        <dubbo:parameter key="topic" value="DISCOUNT"/>
     </dubbo:service>
 
-    <bean id="quoteCalSettleRpcService" class="org.firework.quote.service.QuoteCalSettleRpcService"/>
+    <bean id="discountCalSettleRpcService" class="org.firework.discount.service.DiscountCalSettleRpcService"/>
 
 </beans>

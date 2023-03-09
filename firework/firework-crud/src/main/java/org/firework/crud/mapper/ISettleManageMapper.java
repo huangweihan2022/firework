@@ -11,7 +11,7 @@ public interface ISettleManageMapper {
     /**
      * 获取报价配置
      */
-    List<Settle> query();
+    List<Settle> query(String settleType);
 
     /**
      * 新增报价配置

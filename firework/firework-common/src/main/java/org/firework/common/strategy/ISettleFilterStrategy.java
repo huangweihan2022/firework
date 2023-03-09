@@ -1,8 +1,8 @@
-package org.firework.quote.strategy;
+package org.firework.common.strategy;
 
 import org.firework.common.entity.QuoteFilter;
 
-public interface IQuoteFilterStrategy {
+public interface ISettleFilterStrategy {
 
     QuoteFilter match(QuoteFilter quoteFilter);
 }

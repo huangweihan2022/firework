@@ -1,9 +1,7 @@
 package org.firework.center.listener;
 
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.rpc.RpcContext;
 import org.firework.api.ISettleManageRpcService;
-import org.firework.common.constant.SettleType;
 import org.firework.common.entity.OrderCarrier;
 import org.firework.crud.event.QuoteChangeEvent;
 import org.springframework.context.event.EventListener;
@@ -22,7 +20,7 @@ public class QuoteChangeListener {
     @EventListener
     public void invoker(QuoteChangeEvent event){
         OrderCarrier orderCarrier = event.getSource();
-        RpcContext.getContext().setAttachment("topic", SettleType.QUOTE);
-        settleManageRpcService.updateCache(orderCarrier);
+        //RpcContext.getContext().setAttachment("topic", SettleType.QUOTE);
+        //settleManageRpcService.updateCache(orderCarrier);
     }
 }

@@ -2,6 +2,7 @@ package org.firework.common.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -9,32 +10,33 @@ import java.util.List;
  * 计算报价响应体
  */
 @Data
-public class CalFeeResponse {
+public class CalFeeResponse implements Serializable {
 
-    /* 计算结果 */
+    private String message;
+
+    private Long quoteId;
+
+    private Long discountId;
+
     private BigDecimal result;
 
-    /* 匹配过程 */
-    private List<String> traces;
+    private List<String> quoteTraces;
 
-    /* 是否匹配到报价 1是 0否 */
-    private Integer code;
+    private List<String> discountTraces;
 
-    private CalFeeResponse(){}
-
-    public static CalFeeResponse ok(List<String> traces, BigDecimal result){
+    public static CalFeeResponse fail(String message) {
         CalFeeResponse calFeeResponse = new CalFeeResponse();
-        calFeeResponse.setCode(1);
-        calFeeResponse.setTraces(traces);
-        calFeeResponse.setResult(result);
+        calFeeResponse.setMessage(message);
         return calFeeResponse;
     }
 
-    public static CalFeeResponse fail(List<String> traces){
+    public static CalFeeResponse ok(BigDecimal result, Long quoteId, Long discountId, List<String> quoteTraces, List<String> discountTraces) {
         CalFeeResponse calFeeResponse = new CalFeeResponse();
-        calFeeResponse.setCode(0);
-        calFeeResponse.setTraces(traces);
-        calFeeResponse.setResult(null);
+        calFeeResponse.setResult(result);
+        calFeeResponse.setQuoteId(quoteId);
+        calFeeResponse.setDiscountId(discountId);
+        calFeeResponse.setQuoteTraces(quoteTraces);
+        calFeeResponse.setDiscountTraces(discountTraces);
         return calFeeResponse;
     }
 }
