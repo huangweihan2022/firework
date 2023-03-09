@@ -73,4 +73,8 @@ public class SettleManageService {
             return HandleStatus.FAIL;
         }
     }
+
+    public Settle selectOne(Long parameter) {
+        return this.settleManageMapper.selectOne(parameter);
+    }
 }

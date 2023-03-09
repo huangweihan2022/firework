@@ -8,6 +8,9 @@
             settle_type = #{settleType}
         </where>
     </select>
+    <select id="selectOne" resultType="org.firework.common.entity.Settle">
+        select * from settle where id = #{id}
+    </select>
 
     <insert id="add" parameterType="org.firework.common.entity.Settle">
         insert into settle (send_site_id, send_site_name, receive_site_id, receive_site_name, start_weight,end_weight,

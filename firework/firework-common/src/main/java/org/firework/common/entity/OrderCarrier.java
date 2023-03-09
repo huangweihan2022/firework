@@ -2,7 +2,6 @@ package org.firework.common.entity;
 
 import lombok.Data;
 import org.firework.common.constant.OrderType;
-import org.firework.common.constant.SettleType;
 
 import java.io.Serializable;
 
@@ -19,5 +18,5 @@ public class OrderCarrier implements Serializable {
     private OrderType orderType;
 
     /* 费用类型 */
-    private SettleType settleType;
+    private String settleType;
 }

@@ -23,4 +23,6 @@ public interface ISettleManageMapper {
      */
     void delete(Long id);
 
+    Settle selectOne(Long parameter);
+
 }

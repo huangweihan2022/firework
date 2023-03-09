@@ -16,8 +16,10 @@ import org.firework.common.constant.OrderType;
 import org.firework.common.entity.OrderCarrier;
 import org.firework.common.entity.Settle;
 import org.firework.crud.event.QuoteChangeEvent;
+import org.firework.crud.service.SettleManageService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -34,6 +36,9 @@ public class MyBatisPlusUpdateInterceptor implements Interceptor, ApplicationCon
 
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private SettleManageService settleManageService;
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         // 先执行sql
@@ -48,22 +53,26 @@ public class MyBatisPlusUpdateInterceptor implements Interceptor, ApplicationCon
         BoundSql boundsql = statementHandler.getBoundSql();
         String sql = boundsql.getSql();
         SqlCommandType sqlCommandType = mappedStatement.getSqlCommandType();
-        OrderCarrier order = new OrderCarrier();
+        OrderCarrier orderCarrier = new OrderCarrier();
         if(sqlCommandType.equals(SqlCommandType.INSERT)){
             // 新增数据主键返回
             Settle settle = (Settle) parameter;
-            order.setData(settle);
-            order.setOrderType(OrderType.INSERT);
+            orderCarrier.setData(settle);
+            orderCarrier.setOrderType(OrderType.INSERT);
+            orderCarrier.setSettleType(settle.getSettleType());
         } else if(sqlCommandType.equals(SqlCommandType.DELETE)){
-            order.setData(parameter);
-            order.setOrderType(OrderType.DELETE);
+            orderCarrier.setData(parameter);
+            Settle settle = settleManageService.selectOne((Long)parameter);
+            orderCarrier.setOrderType(OrderType.DELETE);
+            orderCarrier.setSettleType(settle.getSettleType());
         } else {
             // 暂时不考虑
-            order.setOrderType(OrderType.UPDATE);
+            orderCarrier.setOrderType(OrderType.UPDATE);
         }
-        String name = order.getOrderType().name();
+
+        String name = orderCarrier.getOrderType().name();
         log.info("执行sql：{}={}", name, sql);
-        applicationContext.publishEvent(new QuoteChangeEvent(order));
+        applicationContext.publishEvent(new QuoteChangeEvent(orderCarrier));
         return proceed;
     }
 
